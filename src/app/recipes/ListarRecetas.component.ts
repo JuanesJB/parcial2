@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { RecipeService } from './RecipeService';
 import { Receta } from './Receta';
 
@@ -12,6 +11,7 @@ export class ListarRecetasComponent implements OnInit {
   @Input() public recetas: Receta[] = [];
   public promedioCalificaciones: number = 0;
   public totalOpiniones: number = 0;
+  public recetaSeleccionada: Receta | null = null;
 
   constructor(private recipeService: RecipeService) { }
 
@@ -34,5 +34,9 @@ export class ListarRecetasComponent implements OnInit {
 
     this.promedioCalificaciones = sumCalificaciones / recetas.length;
     this.totalOpiniones = sumOpiniones;
+  }
+
+  mostrarDetalle(receta: Receta) {
+    this.recetaSeleccionada = receta;
   }
 }
